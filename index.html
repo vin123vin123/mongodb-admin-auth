@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Database Admin Gateway</title>
+    <script src="https://jsdelivr.net"></script>
+</head>
+<body class="bg-slate-900 flex items-center justify-center h-screen">
+    <div class="bg-white p-8 rounded-xl shadow-2xl max-w-sm w-full text-center">
+        <h1 class="text-2xl font-bold mb-2 text-slate-800">Admin Control Gateway</h1>
+        <p class="text-sm text-slate-500 mb-6">Secure entry restricted to authorized admin users.</p>
+        
+        <div id="errorAlert" class="hidden bg-red-100 text-red-700 text-sm p-3 rounded mb-4 font-medium">
+            Access Denied! Your email is not whitelisted.
+        </div>
+
+        <a href="/auth/google" class="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-4 rounded-lg inline-flex items-center justify-center gap-2 transition-colors">
+            <svg class="w-5 h-5" viewBox="0 0 24 24"><path fill="currentColor" d="M21.35 11.1h-9.17v2.73h6.51c-.33 1.56-1.56 2.95-3.18 3.5v2.88h5.13c2.98-2.74 4.71-6.79 4.71-11.61c0-.52-.04-1.03-.1-1.5z" fill="#4285F4"/><path fill="currentColor" d="M12.18 21.43c2.75 0 5.06-.92 6.75-2.5l-5.13-2.88c-.79.53-1.8.85-2.94.85c-2.69 0-4.96-1.82-5.78-4.28H1.89v3.01c1.73 3.44 5.25 5.8 9.38 5.8z" fill="#34A853"/><path fill="currentColor" d="M6.4 12.62a5.7 5.7 0 0 1 0-3.63V5.98H1.89a9.88 9.88 0 0 0 0 9.64L6.4 12.62z" fill="#FBBC05"/><path fill="currentColor" d="M12.18 4.41c1.5 0 2.84.51 3.9 1.51l2.92-2.92C17.23 1.41 14.92.5 12.18.5c-4.13 0-7.65 2.36-9.38 5.8l4.51 3.01c.82-2.46 3.09-4.28 5.78-4.28z" fill="#EA4335"/></svg>
+            Sign in with Google
+        </a>
+    </div>
+    <script>
+        if (new URLSearchParams(window.location.search).get('error') === 'unauthorized') {
+            document.getElementById('errorAlert').classList.remove('hidden');
+        }
+    </script>
+</body>
+</html>
