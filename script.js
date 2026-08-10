@@ -2,7 +2,6 @@ const form = document.getElementById('dataForm');
 const container = document.getElementById('dataContainer');
 const adminName = document.getElementById('adminName');
 
-// Verification checkpoint ensuring validation on access
 async function verifySession() {
     const res = await fetch('/api/user');
     const status = await res.json();
@@ -15,7 +14,6 @@ async function verifySession() {
     }
 }
 
-// Read database context documents
 async function fetchAndRenderData() {
     const res = await fetch('/api/data');
     if(res.status === 401) return window.location.href = '/';
@@ -44,7 +42,6 @@ async function fetchAndRenderData() {
     });
 }
 
-// Create action processing
 form.addEventListener('submit', async (event) => {
     event.preventDefault();
     const name = document.getElementById('nameInput').value;
@@ -60,7 +57,6 @@ form.addEventListener('submit', async (event) => {
     fetchAndRenderData();
 });
 
-// Delete action execution confirmation loop
 window.commitDeletion = async function(documentId) {
     if (confirm('Verify destructive operation execution request over target?')) {
         await fetch(`/api/data/${documentId}`, { method: 'DELETE' });
@@ -68,5 +64,4 @@ window.commitDeletion = async function(documentId) {
     }
 }
 
-// Initial script activation
 verifySession();
