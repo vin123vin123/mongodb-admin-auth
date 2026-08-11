@@ -1,7 +1,14 @@
+import { MongoClient, ObjectId } from 'mongodb';
+import path from 'path';
+import { fileURLToPath } from 'url';
+import 'dotenv/config';
 import express from 'express';
 import session from 'express-session';
 const express = require('express');
 const cors = require('cors'); // Make sure to npm install cors
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
+const app = express();
+const PORT = process.env.PORT || 3000;
 
 
 // 1. ENABLE CORS SECURITY CLEARANCE
@@ -25,14 +32,7 @@ app.get('/api/health', (req, res) => {
 // Example: app.use('/api/users', userRoutes);
 // Example: app.listen(3000);
 
-import { MongoClient, ObjectId } from 'mongodb';
-import path from 'path';
-import { fileURLToPath } from 'url';
-import 'dotenv/config';
 
-const __dirname = path.dirname(fileURLToPath(import.meta.url));
-const app = express();
-const PORT = process.env.PORT || 3000;
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
