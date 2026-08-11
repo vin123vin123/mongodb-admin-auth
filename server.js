@@ -1,5 +1,30 @@
 import express from 'express';
 import session from 'express-session';
+const express = require('express');
+const cors = require('cors'); // Make sure to npm install cors
+const app = express();
+
+// 1. ENABLE CORS SECURITY CLEARANCE
+// This allows your frontend admin panel to safely ping this backend server
+app.use(cors({
+    origin: '*', // Allows requests from any frontend URL
+    methods: ['GET'],
+}));
+
+// 2. THE LIGHTWEIGHT HEALTH-CHECK ENDPOINT
+// This must be placed ABOVE your database routes so it executes instantly
+app.get('/api/health', (req, res) => {
+    // Returns a tiny 200 OK message immediately without touching the database
+    return res.status(200).json({ 
+        status: "online", 
+        message: "Render server engine is awake and ready!" 
+    });
+});
+
+// --- YOUR EXISTING BACKEND CODE GOES BELOW THIS LINE ---
+// Example: app.use('/api/users', userRoutes);
+// Example: app.listen(3000);
+
 import { MongoClient, ObjectId } from 'mongodb';
 import path from 'path';
 import { fileURLToPath } from 'url';
