@@ -2,7 +2,7 @@ import express from 'express';
 import session from 'express-session';
 const express = require('express');
 const cors = require('cors'); // Make sure to npm install cors
-const app = express();
+
 
 // 1. ENABLE CORS SECURITY CLEARANCE
 // This allows your frontend admin panel to safely ping this backend server
